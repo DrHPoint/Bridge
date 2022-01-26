@@ -42,7 +42,7 @@ contract Bridge is AccessControl, ERC721Holder {
             abi.encodePacked(_itemId, _owner, nonce, _chainIdFrom, chainId)
         );
         require(ECDSA.recover(dataHash.toEthSignedMessageHash(), v, r, s) == (msg.sender), "Signature is wrong");
-        require(swaps[dataHash] != status.REDEEMED);
+        require(swaps[dataHash] != status.REDEEMED, "Already Redeemed");
         swaps[dataHash] = status.REDEEMED;
         NFT(ownerNFT).mint(_owner, _itemId);
     }
