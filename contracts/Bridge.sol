@@ -35,13 +35,13 @@ contract Bridge is AccessControl, ERC721Holder {
         emit swapInitialized(_itemId, msg.sender, chainId, _chainIdTo);
     }
 
-    function redeem(uint256 _itemId, address _owner, uint256 _chainIdFrom, uint256 nonce,
-                uint8 v, bytes32 r, bytes32 s) external onlyRole(CHAIR_PERSON){
+    function redeem(uint256 _itemId, address _owner, uint256 _chainIdFrom, uint256 _nonce,
+                uint8 _v, bytes32 _r, bytes32 _s) external onlyRole(CHAIR_PERSON){
         
         bytes32 dataHash = keccak256(
-            abi.encodePacked(_itemId, _owner, nonce, _chainIdFrom, chainId)
+            abi.encodePacked(_itemId, _owner, _nonce, _chainIdFrom, chainId)
         );
-        require(ECDSA.recover(dataHash.toEthSignedMessageHash(), v, r, s) == (msg.sender), "Signature is wrong");
+        require(ECDSA.recover(dataHash.toEthSignedMessageHash(), _v, _r, _s) == (msg.sender), "Signature is wrong");
         require(swaps[dataHash] != status.REDEEMED, "Already Redeemed");
         swaps[dataHash] = status.REDEEMED;
         NFT(ownerNFT).mint(_owner, _itemId);
