@@ -13,7 +13,7 @@ async function main() {
   await bridge.deployed();
 
   //console.log("Nft deployed to:", nft.address);
-  console.log("Nerf deployed to:", bridge.address);
+  console.log("Bridge deployed to:", bridge.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

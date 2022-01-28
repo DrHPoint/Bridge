@@ -4,6 +4,7 @@ import { task } from "hardhat/config";
 import { parseUnits } from "ethers/lib/utils";
 import { ethers } from "hardhat";
 import { hexConcat } from "@ethersproject/bytes";
+import { SignerWithAddress } from "@nomiclabs/hardhat-ethers/dist/src/signer-with-address";
 import "@nomiclabs/hardhat-waffle";
 import "solidity-coverage";
 import "@nomiclabs/hardhat-ethers";
