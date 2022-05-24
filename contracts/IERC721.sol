@@ -1,4 +1,5 @@
 //SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.1;
 
 interface IERC721 is IERC165 {
     event Transfer(
